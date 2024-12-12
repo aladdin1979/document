@@ -400,6 +400,8 @@ ccc 有全部的權限
 | pageNum       | integral | 頁數，0 開始      |
 | pageLimit     | integral | 每頁筆數，預設 10 筆 |
 
+<a id="cmdNo=18"></a>
+
 ```json
 {
   "cmdNo": 18,
@@ -410,18 +412,18 @@ ccc 有全部的權限
     "totalPage": 7,
     "list": [
       {
-        "macl_id": 62, //流水號
-        "uuid": 58, //會員代碼
-        "aid": 2, //管理端代碼
-        "maid": 0, //代理代碼
-        "said": 30, //上層代理代碼
+        "macl_id": 62,        //流水號
+        "uuid": 58,           //會員代碼
+        "aid": 2,             //管理端代碼
+        "maid": 0,            //代理代碼
+        "said": 30,           //上層代理代碼
         "transaction_id": "", //交易編號，不一定會有
-        "currency": "VND", //幣別
-        "wd_code": 1000, //金流類別代碼
-        "wd_type": 1, //增減類別 0:減少 1:增加
-        "c_amount": 100000, //此次異動金額 10000:1
-        "b_amount": 0, //用戶異動前金額 10000:1
-        "a_amount": 100000, //用戶異動後金額 10000:1
+        "currency": "VND",    //幣別
+        "wd_code": 1000,      //金流類別代碼
+        "wd_type": 1,         //增減類別 0:減少 1:增加
+        "c_amount": 100000,   //此次異動金額 10000:1
+        "b_amount": 0,        //用戶異動前金額 10000:1
+        "a_amount": 100000,   //用戶異動後金額 10000:1
         "ip": "192.168.65.1",
         "created_at": "2024-11-14 17:21:23" //交易時間
       }
@@ -544,6 +546,8 @@ ccc 有全部的權限
 | etime         | string   | 結束時間(+8 時區)                                         |
 | pageNum       | integral | 頁數，0 開始                                              |
 | pageLimit     | integral | 每頁筆數，預設 10 筆                                      |
+
+<a id="cmdNo=22"></a>
 
 ```json
 {
@@ -1154,6 +1158,8 @@ status: 1 為成功
 | pageNum       | integral            | 頁數，0 開始                  |
 | pageLimit     | integral            | 每頁筆數，預設 10 筆          |
 
+<a id="cmdNo=60"></a>
+
 ```json
 {
   cmdNo: 760,
@@ -1223,8 +1229,6 @@ status: 1 為成功
 | highRisk      | integral           | 是否為高風險用戶 1:是 0:否  |
 | ableWithdraw  | integral           | 是否可以出款 1:是 0:否    |
 | ableDeposit   | integral           | 是否可以入款 1:是 0:否    |
-
-[回傳說明](#60 response)
 
 ### 會員-返水累積值歸零 cmdNo=63
 
@@ -1372,8 +1376,7 @@ status: 1 為成功
   "status": 1,
   "message": "",
   "data": {
-    "we": [
-      //遊戲廠商代碼
+    "we": [         //遊戲廠商代碼
       {
         "c": "BAC", //遊戲代碼
         "n": "經典百家樂" //遊戲名稱
@@ -1536,7 +1539,7 @@ status: 1 為成功
 }
 ```
 
-### 查詢投注記錄 cmdNo=522
+### 總代端-查詢投注記錄 cmdNo=522
 
 | ParameterName | DataType | Description          |
 | ------------- | -------- | -------------------- |
@@ -1548,6 +1551,8 @@ status: 1 為成功
 | etime         | string   | 結束時間(+8 時區)    |
 | pageNum       | integral | 頁數，0 開始         |
 | pageLimit     | integral | 每頁筆數，預設 10 筆 |
+
+[回覆說明](#cmdNo=22)
 
 ### 查詢會員報表 cmdNo=523
 
@@ -1576,35 +1581,7 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始           |
 | pageLimit     | integral | 每頁筆數，預設 10 筆   |
 
-```json
-{
-  "cmdNo": 724,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 262,
-    "totalPage": 27,
-    "list": [
-      {
-        "macl_id": 336,
-        "uuid": 49, //會員代碼
-        "aid": 0, //管理者代碼
-        "maid": 0, //代理代碼
-        "said": 30, //上層代理代碼
-        "transaction_id": "XXXXXX", //交易編號
-        "currency": "VND", //幣值
-        "wd_code": "FastPay充值[1200]", //金流類別說明[金流類別代碼]
-        "wd_type": 1, //增減類別 0:減少 1:增加
-        "c_amount": 800000000, //此次異動金額 10000:1
-        "b_amount": 1982006018180, //用戶異動前金額 10000:1
-        "a_amount": 1982806018180, //用戶異動後金額 10000:1
-        "ip": "172.18.0.1", //IP
-        "created_at": "2024-12-06 16:19:55" //記錄產生時間
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=18)
 
 ### 代理-遊戲權限設定 cmdNo=525
 
@@ -1874,7 +1851,7 @@ status: 1 為成功
 | pageNum       | integral            | 頁數，0 開始                  |
 | pageLimit     | integral            | 每頁筆數，預設 10 筆          |
 
-回覆說明 cmdNo=60
+[回覆說明](#cmdNo=60)
 
 ### 會員-新增 cmdNo=561
 
@@ -2005,39 +1982,9 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始                                              |
 | pageLimit     | integral | 每頁筆數，預設 10 筆                                      |
 
-```json
-{
-  "cmdNo": 722,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 4,
-    "totalPage": 1,
-    "list": [
-      {
-        "serial": 837,
-        "uuid": 50, //會員代碼
-        "said": 30, //上層代理代碼
-        "game_provider": "sp", //遊戲提供商代碼
-        "bet_date_time": 1733457195, //投注时间(UNIX)
-        "settlement_time": 1733457198, //结算时间(UNIX)
-        "table_id": "EG-SLOT-A013", //桌號代碼
-        "game_round_id": "14601966108688", //遊戲局號
-        "transaction_id": "EG-SLOT-A013-14601966108688-77118974", //遊戲訂單編號(唯一值)
-        "bet_amount": 300000, //投注金額 10000:1
-        "valid_bet_amount": 300000, //有效投注额 10000:1
-        "winloss_amount": -300000, //赢输金额 10000:1
-        "game_category": "電子[3]", //遊戲分類名稱[遊戲分類代碼]
-        "game_type": "比基尼狂熱[spEG-SLOT-A013]", //遊戲名稱[遊戲代碼]
-        "ip": null, //投注時IP位置，不一定會有值
-        "created_at": "2024-12-06 11:54:07" //建立記錄時間
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=22)
 
-### 代理端-會員-查詢投注記錄 cmdNo=724
+### 代理端-會員-查詢餘額異動紀錄 cmdNo=724
 
 | ParameterName | DataType | Description            |
 | ------------- | -------- | ---------------------- |
@@ -2051,35 +1998,7 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始           |
 | pageLimit     | integral | 每頁筆數，預設 10 筆   |
 
-```json
-{
-  "cmdNo": 724,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 262,
-    "totalPage": 27,
-    "list": [
-      {
-        "macl_id": 336,
-        "uuid": 49, //會員代碼
-        "aid": 0, //管理者代碼
-        "maid": 0, //代理代碼
-        "said": 30, //上層代理代碼
-        "transaction_id": "XXXXXX", //交易編號
-        "currency": "VND", //幣值
-        "wd_code": "FastPay充值[1200]", //金流類別說明[金流類別代碼]
-        "wd_type": 1, //增減類別 0:減少 1:增加
-        "c_amount": 800000000, //此次異動金額 10000:1
-        "b_amount": 1982006018180, //用戶異動前金額 10000:1
-        "a_amount": 1982806018180, //用戶異動後金額 10000:1
-        "ip": "172.18.0.1", //IP
-        "created_at": "2024-12-06 16:19:55" //記錄產生時間
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=18)
 
 ### 代理端-代理-拆帳報表 cmdNo=726
 
@@ -2468,7 +2387,7 @@ status: 1 為成功
 | pageNum       | integral            | 頁數，0 開始             |
 | pageLimit     | integral            | 每頁筆數，預設 10 筆        |
 
-回覆說明 cmdNo=60
+[回覆說明](#cmdNo=60)
 
 ### 會員-新增 cmdNo=761
 
@@ -2645,14 +2564,16 @@ status: 1 為成功
 | ------------- | ----------------- | ----------- |
 | password      | string (Required) | 密碼        |
 
-### 查詢投注記錄 cmdNo=802
+### 會員端-查詢投注記錄 cmdNo=802
 
-| ParameterName | DataType | Description       |
-| ------------- | -------- | ----------------- |
-| gameProvider  | string   | 遊戲提供商        |
-| ip            | string   | IP                |
+| ParameterName | DataType | Description |
+|---------------|----------|-------------|
+| gameProvider  | string   | 遊戲提供商       |
+| ip            | string   | IP          |
 | stime         | string   | 開始時間(+8 時區) |
 | etime         | string   | 結束時間(+8 時區) |
+
+[回覆說明](#cmdNo=22)
 
 ### 查詢會員報表 cmdNo=803
 
@@ -2676,35 +2597,7 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始           |
 | pageLimit     | integral | 每頁筆數，預設 10 筆   |
 
-```json
-{
-  "cmdNo": 804,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 262,
-    "totalPage": 27,
-    "list": [
-      {
-        "macl_id": 336,
-        "uuid": 49, //會員代碼
-        "aid": 0, //管理者代碼
-        "maid": 0, //代理代碼
-        "said": 30, //上層代理代碼
-        "transaction_id": "XXXXXX", //交易編號
-        "currency": "VND", //幣值
-        "wd_code": "FastPay充值[1200]", //金流類別說明[金流類別代碼]
-        "wd_type": 1, //增減類別 0:減少 1:增加
-        "c_amount": 800000000, //此次異動金額 10000:1
-        "b_amount": 1982006018180, //用戶異動前金額 10000:1
-        "a_amount": 1982806018180, //用戶異動後金額 10000:1
-        "ip": "172.18.0.1", //IP
-        "created_at": "2024-12-06 16:19:55" //記錄產生時間
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=18)
 
 ### 會員-跑馬燈列表 cmdNo=806
 
