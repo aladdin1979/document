@@ -8,13 +8,17 @@
 
 ## API URL 說明
 
-基礎網址 http://localhost:8100/api/ <br/>
+[SIT]環境網址 https://sit.api.tobet388.com/
 
-共用相關 http://localhost:8100/api/universal/ <br/>
-管理端 http://localhost:8100/api/admin/ <br/>
-總代理端 http://localhost:8100/api/mainAgent/ <br/>
-代理端 http://localhost:8100/api/agent/ <br/>
-會員端 http://localhost:8100/api/member/ <br/>
+| API類別 | DataType             |
+|-------|----------------------|
+| 管理端     | 環境網址 + api/admin/ |
+| 總代理端     | 環境網址 + api/mainAgent/ |
+| 代理端     | 環境網址 + api/agent/   |
+| 會員端    | 環境網址 + api/member/   |
+| 共用相關    | 環境網址 + api/universal/    |
+
+例： https://sit.api.tobet388.com/api/admin <br/>
 
 ### 基本參數
 
@@ -43,13 +47,13 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 
 ## API cmdNo 範圍
 
-| 分類     | cmdNo 開始 | cmdNo 結束 |
-| -------- | ---------- | ---------- |
-| 管理端   | 1          | 499        |
-| 總代理端 | 500        | 699        |
-| 代理端   | 700        | 799        |
-| 會員端   | 800        | 999        |
-| 其他     | 1000       | 1100       |
+| 分類   | cmdNo 開始 | cmdNo 結束 |
+|------|----------|----------|
+| 管理端  | 1        | 499      |
+| 總代理端 | 500      | 699      |
+| 代理端  | 700      | 799      |
+| 會員端  | 800      | 999      |
+| 其他   | 1000     | 1100     |
 
 ## 管理端
 
@@ -75,11 +79,11 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 ### 註冊 cmdNo=1
 
 | ParameterName | DataType            | Description |
-|---------------|---------------------|-------------|
-| account       | string (Required)   | 帳號          |
-| password      | string (Required)   | 密碼          |
-| rid           | integral (Required) | 角色代碼        |
-| name          | string              | 名稱          |
+| ------------- | ------------------- | ----------- |
+| account       | string (Required)   | 帳號        |
+| password      | string (Required)   | 密碼        |
+| rid           | integral (Required) | 角色代碼    |
+| name          | string              | 名稱        |
 
 ```json
 {
@@ -91,12 +95,12 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 
 ### 管理員-列表 cmdNo=2
 
-| ParameterName | DataType | Description  |
-|---------------|----------|--------------|
-| aid           | integral | 管理員代碼        |
-| rid           | integral | 角色代碼         |
-| account       | string   | 帳號           |
-| pageNum       | integral | 頁數，0 開始      |
+| ParameterName | DataType | Description          |
+| ------------- | -------- | -------------------- |
+| aid           | integral | 管理員代碼           |
+| rid           | integral | 角色代碼             |
+| account       | string   | 帳號                 |
+| pageNum       | integral | 頁數，0 開始         |
 | pageLimit     | integral | 每頁筆數，預設 10 筆 |
 
 ```json
@@ -123,13 +127,13 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 
 ### 管理員-修改 cmdNo=3
 
-| ParameterName | DataType           | Description       |
-|---------------|--------------------|-------------------|
-| aid           | integral(Required) | 管理員代碼             |
-| rid           | integral           | 角色代碼              |
-| password      | string             | 密碼                |
+| ParameterName | DataType           | Description               |
+| ------------- | ------------------ | ------------------------- |
+| aid           | integral(Required) | 管理員代碼                |
+| rid           | integral           | 角色代碼                  |
+| password      | string             | 密碼                      |
 | status        | integral           | 狀態 0:停用 1:啟用 9:觀看 |
-| name          | string             | 名稱                |
+| name          | string             | 名稱                      |
 
 ```json
 {
@@ -141,11 +145,11 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 
 ### 角色-列表 cmdNo=10
 
-| ParameterName | DataType | Description         |
-|---------------|----------|---------------------|
+| ParameterName | DataType | Description                   |
+| ------------- | -------- | ----------------------------- |
 | type          | integral | 類別 1:管理員 2:總代理 3:代理 |
-| pageNum       | integral | 頁數，0 開始             |
-| pageLimit     | integral | 每頁筆數，預設 10 筆        |
+| pageNum       | integral | 頁數，0 開始                  |
+| pageLimit     | integral | 每頁筆數，預設 10 筆          |
 
 ```json
 {
@@ -173,9 +177,9 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 
 ### 角色-新增 cmdNo=11
 
-| ParameterName | DataType               | Description                                                             |
-|---------------|------------------------|-------------------------------------------------------------------------|
-| type          | integral (Required)    | 類別 <br/> 1:管理員 2:總代理 3:代理                                               |
+| ParameterName | DataType               | Description                                                                              |
+| ------------- | ---------------------- | ---------------------------------------------------------------------------------------- |
+| type          | integral (Required)    | 類別 <br/> 1:管理員 2:總代理 3:代理                                                      |
 | permissions   | stringArray (Required) | 權限陣列 <br/> ex:{"aaa":1,"bbb":3,"ccc":31} <br/>詳情看下方「permissions 參數說明」說明 |
 
 ```json
@@ -188,10 +192,10 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 
 ### 角色-修改 cmdNo=12
 
-| ParameterName | DataType            | Description                                                             |
-|---------------|---------------------|-------------------------------------------------------------------------|
-| rid           | integral (Required) | 角色代碼                                                                    |
-| type          | integral            | 類別 <br/> 1:管理員 2:總代理 3:代理                                               |
+| ParameterName | DataType            | Description                                                                              |
+| ------------- | ------------------- | ---------------------------------------------------------------------------------------- |
+| rid           | integral (Required) | 角色代碼                                                                                 |
+| type          | integral            | 類別 <br/> 1:管理員 2:總代理 3:代理                                                      |
 | Permissions   | stringArray         | 權限陣列 <br/> ex:{"aaa":1,"bbb":3,"ccc":31} <br/>詳情看下方「permissions 參數說明」說明 |
 
 ```json
@@ -205,8 +209,8 @@ status 代碼表<br/> https://docs.google.com/spreadsheets/d/1ldp7npnMXjC20SYNDn
 ### 角色-查詢權限內容 cmdNo=13
 
 | ParameterName | DataType            | Description |
-|---------------|---------------------|-------------|
-| rid           | integral (Required) | 角色代碼        |
+| ------------- | ------------------- | ----------- |
+| rid           | integral (Required) | 角色代碼    |
 
 ```json
 {
@@ -247,8 +251,8 @@ ccc 有全部的權限
 ### 管理員-遊戲列表 cmdNo=14
 
 | ParameterName | DataType | Description |
-|---------------|----------|-------------|
-| gameProvider  | string   | 遊戲提供商       |
+| ------------- | -------- | ----------- |
+| gameProvider  | string   | 遊戲提供商  |
 
 ```json
 {
@@ -275,14 +279,14 @@ ccc 有全部的權限
 
 ### 管理端-查詢投注拆帳明細 cmdNo=15
 
-| ParameterName | DataType            | Description  |
-|---------------|---------------------|--------------|
-| said          | integral            | 上層代理代碼       |
-| maid          | integral            | 代理代碼 0:管理端   |
-| debtType      | integral (Required) | 拆帳類別 1:投注記錄  |
+| ParameterName | DataType            | Description              |
+| ------------- | ------------------- | ------------------------ |
+| said          | integral            | 上層代理代碼             |
+| maid          | integral            | 代理代碼 0:管理端        |
+| debtType      | integral (Required) | 拆帳類別 1:投注記錄      |
 | debtSerial    | integral            | 對應的拆帳對象訂單流水號 |
-| pageNum       | integral            | 頁數，0 開始      |
-| pageLimit     | integral            | 每頁筆數，預設 10 筆 |
+| pageNum       | integral            | 頁數，0 開始             |
+| pageLimit     | integral            | 每頁筆數，預設 10 筆     |
 
 ```json
 {
@@ -312,11 +316,11 @@ ccc 有全部的權限
 
 ### 管理端-系統-查詢告警紀錄 cmdNo=16
 
-| ParameterName | DataType | Description  |
-|---------------|----------|--------------|
-| stime         | string   | 開始時間(+8 時區)  |
-| etime         | string   | 結束時間(+8 時區)  |
-| pageNum       | integral | 頁數，0 開始      |
+| ParameterName | DataType | Description          |
+| ------------- | -------- | -------------------- |
+| stime         | string   | 開始時間(+8 時區)    |
+| etime         | string   | 結束時間(+8 時區)    |
+| pageNum       | integral | 頁數，0 開始         |
 | pageLimit     | integral | 每頁筆數，預設 10 筆 |
 
 ```json
@@ -340,19 +344,19 @@ ccc 有全部的權限
 
 ### 管理端-會員-查詢報表 cmdNo=17
 
-| ParameterName | DataType | Description                                |
-|---------------|----------|--------------------------------------------|
-| said          | integral | 上層代理代碼                                     |
-| uuid          | integral | 會員代碼                                       |
-| gameProvider  | string   | 遊戲提供商                                      |
-| gameCategory  | string   | 遊戲分類代碼 1:真人 2:彩票 3:電子 4:體育 5:棋牌 10:區塊鏈     |
-| gameType      | string   | 遊戲類別(代碼)                                   |
-| reportType    | integral | 報表類別 1:日(預設) 2:週 3:月                       |
+| ParameterName | DataType | Description                                                            |
+| ------------- | -------- | ---------------------------------------------------------------------- |
+| said          | integral | 上層代理代碼                                                           |
+| uuid          | integral | 會員代碼                                                               |
+| gameProvider  | string   | 遊戲提供商                                                             |
+| gameCategory  | string   | 遊戲分類代碼 1:真人 2:彩票 3:電子 4:體育 5:棋牌 10:區塊鏈              |
+| gameType      | string   | 遊戲類別(代碼)                                                         |
+| reportType    | integral | 報表類別 1:日(預設) 2:週 3:月                                          |
 | reportSubType | integral | 報表子類別 1:一般報表(預設) 2:遊戲商報表 3:遊戲分類報表 4:遊戲類別報表 |
-| stime         | string   | 開始時間(+8 時區)                                |
-| etime         | string   | 結束時間(+8 時區)                                |
-| pageNum       | integral | 頁數，0 開始                                    |
-| pageLimit     | integral | 每頁筆數，預設 10 筆                               |
+| stime         | string   | 開始時間(+8 時區)                                                      |
+| etime         | string   | 結束時間(+8 時區)                                                      |
+| pageNum       | integral | 頁數，0 開始                                                           |
+| pageLimit     | integral | 每頁筆數，預設 10 筆                                                   |
 
 ```json
 {
@@ -387,18 +391,18 @@ ccc 有全部的權限
 
 ### 管理端-會員-查詢餘額異動紀錄 cmdNo=18
 
-| ParameterName | DataType | Description  |
-|---------------|----------|--------------|
-| aid           | integral | 管理員代碼(執行者)   |
-| said          | integral | 上層代理代碼       |
-| maid          | integral | 代理代碼(執行者)    |
-| uuid          | integral | 會員代碼         |
-| ip            | string   | IP           |
+| ParameterName | DataType | Description            |
+| ------------- | -------- | ---------------------- |
+| aid           | integral | 管理員代碼(執行者)     |
+| said          | integral | 上層代理代碼           |
+| maid          | integral | 代理代碼(執行者)       |
+| uuid          | integral | 會員代碼               |
+| ip            | string   | IP                     |
 | wdCode        | integral | 金流類別代碼(下方定義) |
-| stime         | string   | 開始時間(+8 時區)  |
-| etime         | string   | 結束時間(+8 時區)  |
-| pageNum       | integral | 頁數，0 開始      |
-| pageLimit     | integral | 每頁筆數，預設 10 筆 |
+| stime         | string   | 開始時間(+8 時區)      |
+| etime         | string   | 結束時間(+8 時區)      |
+| pageNum       | integral | 頁數，0 開始           |
+| pageLimit     | integral | 每頁筆數，預設 10 筆   |
 
 <a id="cmdNo=18"></a>
 
@@ -412,20 +416,64 @@ ccc 有全部的權限
     "totalPage": 7,
     "list": [
       {
-        "macl_id": 62,        //流水號
-        "uuid": 58,           //會員代碼
-        "aid": 2,             //管理端代碼
-        "maid": 0,            //代理代碼
-        "said": 30,           //上層代理代碼
+        "macl_id": 62, //流水號
+        "uuid": 58, //會員代碼
+        "aid": 2, //管理端代碼
+        "maid": 0, //代理代碼
+        "said": 30, //上層代理代碼
         "transaction_id": "", //交易編號，不一定會有
-        "currency": "VND",    //幣別
-        "wd_code": 1000,      //金流類別代碼
-        "wd_type": 1,         //增減類別 0:減少 1:增加
-        "c_amount": 100000,   //此次異動金額 10000:1
-        "b_amount": 0,        //用戶異動前金額 10000:1
-        "a_amount": 100000,   //用戶異動後金額 10000:1
+        "currency": "VND", //幣別
+        "wd_code": 1000, //金流類別代碼
+        "wd_type": 1, //增減類別 0:減少 1:增加
+        "c_amount": 100000, //此次異動金額 10000:1
+        "b_amount": 0, //用戶異動前金額 10000:1
+        "a_amount": 100000, //用戶異動後金額 10000:1
         "ip": "192.168.65.1",
         "created_at": "2024-11-14 17:21:23" //交易時間
+      }
+    ]
+  }
+}
+```
+
+### 管理端-後台登入列表 cmdNo=19
+
+| ParameterName | DataType | Description                          |
+| ------------- | -------- | ------------------------------------ |
+| aid           | integral | 管理員代碼                           |
+| maid          | integral | 代理代碼                             |
+| ip            | string   | IP                                   |
+| startDate     | string   | 最後登入開始時間 YYYY-mm-dd HH:ii:ss |
+| endDate       | string   | 最後登入結束時間 YYYY-mm-dd HH:ii:ss |
+| pageNum       | integral | 頁數，0 開始                         |
+| pageLimit     | integral | 每頁筆數，預設 10 筆                 |
+
+```json
+{
+  "cmdNo": 19,
+  "status": 1,
+  "message": "",
+  "data": {
+    "total": 5,
+    "totalPage": 1,
+    "list": [
+      {
+        "serial": 2,
+        "aid": 0,
+        "maid": 1,
+        "ip": "172.18.0.1",
+        "last_login_time": "2024-12-17 15:43:06",
+        "created_at": "2024-12-17 15:39:06",
+        "updated_at": "2024-12-17 15:43:06"
+      },
+      {
+        "serial": 3,
+        "aid": 0,
+        "maid": 4,
+        "ip": "172.18.0.1",
+        "last_login_time": "2024-12-17 15:43:08",
+        "created_at": "2024-12-17 15:39:09",
+        "updated_at": "2024-12-17 15:43:08"
       }
     ]
   }
@@ -688,28 +736,87 @@ status: 1 為成功
 
 代理代碼 與 會員代碼 擇一傳入，另一方帶 0
 
+<a id="cmdNo=27"></a>
+
+isGetIndividualGameSettings = 1
+設定過的會顯示設定完成的，沒設定過的會跑預設值
+
 ```json
 {
   "cmdNo": 27,
   "status": 1,
   "message": "",
   "data": {
-    "total": 1,
+    "total": 2,
     "totalPage": 1,
     "list": [
       {
-        "maid": 1,
-        "said": 0,
+        "maid": 4,
+        "said": 3,
         "uuid": 0,
-        "agent_tree": null,
+        "agent_tree": "|3|4|",
+        "game_provider": "jdb",
+        "game_provider_status": 1,
+        "live_status": 0,
+        "live_game_status": [],
+        "lottery_status": 0,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": {
+          "14088": 0,
+          "14090": 0
+        },
+        "sport_status": 0,
+        "sport_game_status": [],
+        "chess_status": 1,
+        "chess_game_status": [],
+        "blockchain_status": 0,
+        "blockchain_game_status": []
+      },
+      {
+        "maid": 4,
+        "said": 3,
+        "uuid": 0,
+        "agent_tree": "|3|4|",
         "game_provider": "we",
         "game_provider_status": 1,
         "live_status": 1,
         "live_game_status": {
           "BAC": 0,
-          "FAN": 0,
-          "CG": 0
+          "DI": 0
         },
+        "lottery_status": 1,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": [],
+        "sport_status": 0,
+        "sport_game_status": [],
+        "chess_status": 9,
+        "chess_game_status": [],
+        "blockchain_status": 1,
+        "blockchain_game_status": []
+      },
+      {
+        "game_provider": "sa",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "live_game_status": [],
+        "lottery_status": 1,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": [],
+        "sport_status": 1,
+        "sport_game_status": [],
+        "chess_status": 1,
+        "chess_game_status": [],
+        "blockchain_status": 1,
+        "blockchain_game_status": []
+      },
+      {
+        "game_provider": "sp",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "live_game_status": [],
         "lottery_status": 1,
         "lottery_game_status": [],
         "slot_status": 1,
@@ -736,22 +843,72 @@ status: 1 為成功
   "data": {
     "total": 0,
     "totalPage": 0,
-    "list": {
-      "game_provider": "jdb",
-      "game_provider_status": 1,
-      "live_status": 1,
-      "live_game_status": [],
-      "lottery_status": 1,
-      "lottery_game_status": [],
-      "slot_status": 1,
-      "slot_game_status": [],
-      "sport_status": 1,
-      "sport_game_status": [],
-      "chess_status": 1,
-      "chess_game_status": [],
-      "blockchain_status": 1,
-      "blockchain_game_status": []
-    }
+    "list": [
+      {
+        "game_provider": "we",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "live_game_status": [],
+        "lottery_status": 1,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": [],
+        "sport_status": 1,
+        "sport_game_status": [],
+        "chess_status": 1,
+        "chess_game_status": [],
+        "blockchain_status": 1,
+        "blockchain_game_status": []
+      },
+      {
+        "game_provider": "jdb",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "live_game_status": [],
+        "lottery_status": 1,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": [],
+        "sport_status": 1,
+        "sport_game_status": [],
+        "chess_status": 1,
+        "chess_game_status": [],
+        "blockchain_status": 1,
+        "blockchain_game_status": []
+      },
+      {
+        "game_provider": "sa",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "live_game_status": [],
+        "lottery_status": 1,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": [],
+        "sport_status": 1,
+        "sport_game_status": [],
+        "chess_status": 1,
+        "chess_game_status": [],
+        "blockchain_status": 1,
+        "blockchain_game_status": []
+      },
+      {
+        "game_provider": "sp",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "live_game_status": [],
+        "lottery_status": 1,
+        "lottery_game_status": [],
+        "slot_status": 1,
+        "slot_game_status": [],
+        "sport_status": 1,
+        "sport_game_status": [],
+        "chess_status": 1,
+        "chess_game_status": [],
+        "blockchain_status": 1,
+        "blockchain_game_status": []
+      }
+    ]
   }
 }
 ```
@@ -764,18 +921,50 @@ status: 1 為成功
   "status": 1,
   "message": "",
   "data": {
-    "total": 1,
+    "total": 2,
     "totalPage": 1,
     "list": [
       {
-        "maid": 0,
-        "uuid": 1,
+        "maid": 4,
+        "uuid": 0,
+        "game_provider": "jdb",
+        "game_provider_status": 1,
+        "live_status": 0,
+        "lottery_status": 0,
+        "slot_status": 1,
+        "sport_status": 0,
+        "chess_status": 1,
+        "blockchain_status": 0
+      },
+      {
+        "maid": 4,
+        "uuid": 0,
         "game_provider": "we",
         "game_provider_status": 1,
         "live_status": 1,
         "lottery_status": 1,
         "slot_status": 1,
         "sport_status": 0,
+        "chess_status": 9,
+        "blockchain_status": 1
+      },
+      {
+        "game_provider": "sa",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "lottery_status": 1,
+        "slot_status": 1,
+        "sport_status": 1,
+        "chess_status": 1,
+        "blockchain_status": 1
+      },
+      {
+        "game_provider": "sp",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "lottery_status": 1,
+        "slot_status": 1,
+        "sport_status": 1,
         "chess_status": 1,
         "blockchain_status": 1
       }
@@ -794,16 +983,48 @@ status: 1 為成功
   "data": {
     "total": 0,
     "totalPage": 0,
-    "list": {
-      "game_provider": "jdb",
-      "game_provider_status": 1,
-      "live_status": 1,
-      "lottery_status": 1,
-      "slot_status": 1,
-      "sport_status": 1,
-      "chess_status": 1,
-      "blockchain_status": 1
-    }
+    "list": [
+      {
+        "game_provider": "we",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "lottery_status": 1,
+        "slot_status": 1,
+        "sport_status": 1,
+        "chess_status": 1,
+        "blockchain_status": 1
+      },
+      {
+        "game_provider": "jdb",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "lottery_status": 1,
+        "slot_status": 1,
+        "sport_status": 1,
+        "chess_status": 1,
+        "blockchain_status": 1
+      },
+      {
+        "game_provider": "sa",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "lottery_status": 1,
+        "slot_status": 1,
+        "sport_status": 1,
+        "chess_status": 1,
+        "blockchain_status": 1
+      },
+      {
+        "game_provider": "sp",
+        "game_provider_status": 1,
+        "live_status": 1,
+        "lottery_status": 1,
+        "slot_status": 1,
+        "sport_status": 1,
+        "chess_status": 1,
+        "blockchain_status": 1
+      }
+    ]
   }
 }
 ```
@@ -848,8 +1069,12 @@ status: 1 為成功
         "time_interval_next_marquee": 0,
         "pop_up_window_sort": "0",
         "time_interval_next_pop_up": 0,
-        "creator": 2,
-        "updater": 2,
+        "creator": {
+          "admin": "2"
+        },
+        "updater": {
+          "admin": "2"
+        },
         "created_at": "2024-12-06 17:08:24",
         "updated_at": "2024-12-06 17:15:48",
         // stateName 狀態判斷 即將到來（半個月內）、逾期、進行中、關閉中（停用）、時間未到
@@ -862,7 +1087,9 @@ status: 1 為成功
             "language": "en-us",
             "title": "test111",
             "content": "ddddd",
-            "creator": 2,
+            "creator": {
+              "admin": "2"
+            },
             "updater": null,
             "created_at": "2024-12-06 17:18:52",
             "updated_at": "2024-12-06 17:18:52"
@@ -873,8 +1100,12 @@ status: 1 為成功
             "language": "zh-tw",
             "title": "測試111",
             "content": "asdfasdfaf",
-            "creator": 2,
-            "updater": 2,
+            "creator": {
+              "admin": "2"
+            },
+            "updater": {
+              "admin": "2"
+            },
             "created_at": "2024-12-06 17:17:20",
             "updated_at": "2024-12-06 17:18:20"
           }
@@ -897,7 +1128,9 @@ status: 1 為成功
         "time_interval_next_marquee": 0,
         "pop_up_window_sort": "0",
         "time_interval_next_pop_up": 0,
-        "creator": 2,
+        "creator": {
+          "admin": "2"
+        },
         "updater": null,
         "created_at": "2024-12-06 17:09:40",
         "updated_at": "2024-12-06 17:09:40",
@@ -909,7 +1142,9 @@ status: 1 為成功
             "language": "en-us",
             "title": "test111",
             "content": "ddddd",
-            "creator": 2,
+            "creator": {
+              "admin": "2"
+            },
             "updater": null,
             "created_at": "2024-12-06 17:19:10",
             "updated_at": "2024-12-06 17:19:10"
@@ -1001,6 +1236,66 @@ status: 1 為成功
 
 status: 1 為成功
 
+### 後台白名單列表 cmdNo=35
+
+| ParameterName | DataType | Description          |
+| ------------- | -------- | -------------------- |
+| ip            | string   | ip                   |
+| maid          | string   | 代理 id              |
+| state         | string   | 狀態 1:啟用 2:移除   |
+| pageNum       | string   | 頁數，0 開始         |
+| pageLimit     | string   | 每頁筆數，預設 10 筆 |
+
+<a id="cmdNo=35"></a>
+
+```json
+{
+  "cmdNo": 35,
+  "status": 1,
+  "message": "",
+  "data": {
+    "total": 1,
+    "totalPage": 1,
+    "list": [
+      {
+        "serial": 4,
+        "maid": 4,
+        "ip": "168.94.30.144",
+        "remark": "測試第二個相同ip",
+        "state": "1",
+        "creator": {
+          "admin": "2"  // 會分為 admin、main_agent、agent、system
+        },
+        "updater": null,
+        "created_at": "2024-12-13 09:28:54",
+        "updated_at": "2024-12-13 09:28:54"
+      }
+    ]
+  }
+}
+```
+
+### 新增後台白名單 ip cmdNo=36
+
+| ParameterName | DataType | Description     |
+| ------------- | -------- | --------------- |
+| maid          | string   | 要新增的代理 id |
+| ip            | string   | ip              |
+| remark        | string   | 備註            |
+
+status: 1 為成功
+
+### 編輯後台白名單 ip cmdNo=37
+
+| ParameterName | DataType | Description        |
+| ------------- | -------- | ------------------ |
+| serial        | string   | 流水號             |
+| ip            | string   | ip                 |
+| remark        | string   | 備註               |
+| state         | string   | 狀態 1:啟用 2:移除 |
+
+status: 1 為成功
+
 ### 查詢拆帳報表 cmdNo=40
 
 | ParameterName | DataType | Description                                                            |
@@ -1071,7 +1366,7 @@ status: 1 為成功
 }
 ```
 
-### 代理-列表 cmdNo=50
+### 管理端-代理-列表 cmdNo=50
 
 | ParameterName | DataType | Description                   |
 | ------------- | -------- | ----------------------------- |
@@ -1084,6 +1379,40 @@ status: 1 為成功
 | status        | integral | 狀態 0:停用 1:啟用 9:觀看     |
 | pageNum       | integral | 頁數，0 開始                  |
 | pageLimit     | integral | 每頁筆數，預設 10 筆          |
+
+<a id="cmdNo=50"></a>
+
+```json
+{
+  "cmdNo": 50,
+  "status": 1,
+  "message": "",
+  "data": {
+    "total": 3,
+    "totalPage": 1,
+    "list": [
+      {
+        "maid": 30, //代理代碼
+        "said": 1, //上層代理代碼
+        "rid": 0, //角色代碼
+        "debt_identity": 1, //用戶型別 1:信用 2:現金
+        "name": "WE1級代理", //名稱
+        "agent_tree": "|1|30|", //代理階層圖
+        "agent_level": 1, //代理層級 0:總代 1:一級代理 以此類推
+        "status": 1, //狀態 0:停用 1:啟用 9:觀看
+        "commission_pct": 60, //代理佔成數 0~100
+        "currency": "VND", //幣別 總代不會有幣別
+        "p_status": 1, //上層狀態 0:停用 1:啟用 9:觀看
+        "account": "we1", //帳號
+        "email": null, //Email
+        "country_codes": null, //國碼(手機)
+        "phone": null, //手機號碼(不含國碼)
+        "updated_at": "2024-11-29 13:44:40" //最後更新時間
+      }
+    ]
+  }
+}
+```
 
 ### 代理-新增 cmdNo=51
 
@@ -1107,6 +1436,18 @@ status: 1 為成功
 | name          | string             | 名稱                               |
 | status        | integral           | 狀態 0:停用 1:啟用 9:觀看          |
 | syncSubAgent  | integral           | 狀態同步下線(代理，會員) 1:是 0:否 |
+| quotaAmount   | integral           | 信用額度 10000:1                   |
+| email         | string             | Email                              |
+| countryCodes  | countryCodes       | 國碼(手機)                         |
+| phoneNumber   | integral           | 手機                               |
+
+```json
+{
+  "cmdNo": 52,
+  "status": 1,
+  "message": ""
+}
+```
 
 ### 代理-取得不返水遊戲 cmdNo=56
 
@@ -1114,6 +1455,8 @@ status: 1 為成功
 | ------------- | -------- | ----------- |
 | maid          | integral | 代理代碼    |
 | gameProvider  | string   | 遊戲商代碼  |
+
+<a id="cmdNo=56"></a>
 
 ```json
 {
@@ -1162,41 +1505,42 @@ status: 1 為成功
 
 ```json
 {
-  cmdNo: 760,
-  status: 1,
-  message: "",
-  data: {
-    total: 40,
-    totalPage: 4,
-    list: [
+  "cmdNo": 760,
+  "status": 1,
+  "message": "",
+  "data": {
+    "total": 40,
+    "totalPage": 4,
+    "list": [
       {
-        uuid: 27,         //會員代碼
-        said: 30,         //上層代理代碼
-        debt_identity: 1, //用戶型別 1:信用 2:現金
-        high_risk: 0,     //是否為高風險用戶 1:是 0:否 禁止投注/禁止出款/禁止入款	
-        able_withdraw: 1, //是否可以出款 1:是 0:否
-        able_deposit: 1,  //是否可以入款 1:是 0:否
-        name: null,       //名稱
-        agent_tree: "|1|30|", //代理階層圖
-        tag_tree: "|1|2|3|4|",  //標籤ID陣列
-        tag_name_tree: [        //標籤說明陣列(有多語系)
+        "uuid": 27, //會員代碼
+        "said": 30, //上層代理代碼
+        "debt_identity": 1, //用戶型別 1:信用 2:現金
+        "high_risk": 0, //是否為高風險用戶 1:是 0:否 禁止投注/禁止出款/禁止入款
+        "able_withdraw": 1, //是否可以出款 1:是 0:否
+        "able_deposit": 1, //是否可以入款 1:是 0:否
+        "name": null, //名稱
+        "agent_tree": "|1|30|", //代理階層圖
+        "tag_tree": "|1|2|3|4|", //標籤ID陣列
+        "tag_name_tree": [
+          //標籤說明陣列(有多語系)
           "禁止投注",
           "禁止出款",
           "禁止入款",
           "標A",
           "標B"
         ],
-        currency: "VND",      //幣值
-        p_status: 1,          //上層狀態 0:停用 1:啟用 9:觀看
-        status: 1,            //狀態 0:停用 1:啟用 9:觀看
-        amount: 0,            //用戶餘額 10000:1
-        rebate_total_amount: 0,       //累積總返水金額 10000:1
-        rebate_daily_total_amount: 0, //本日總返水金額 10000:1
-        account: "T1731384894_1",     //帳號
-        email: "abc@gmail.com",       //Email
-        country_codes: "886",         //國碼(手機)
-        phone: "911111111",           //手機號碼(不含國碼)
-        updated_at: "2024-11-25 12:51:48" //最後更新時間
+        "currency": "VND", //幣值
+        "p_status": 1, //上層狀態 0:停用 1:啟用 9:觀看
+        "status": 1, //狀態 0:停用 1:啟用 9:觀看
+        "amount": 0, //用戶餘額 10000:1
+        "rebate_total_amount": 0, //累積總返水金額 10000:1
+        "rebate_daily_total_amount": 0, //本日總返水金額 10000:1
+        "account": "T1731384894_1", //帳號
+        "email": "abc@gmail.com", //Email
+        "country_codes": "886", //國碼(手機)
+        "phone": "911111111", //手機號碼(不含國碼)
+        "updated_at": "2024-11-25 12:51:48" //最後更新時間
       }
     ]
   }
@@ -1205,48 +1549,50 @@ status: 1 為成功
 
 ### 會員-新增 cmdNo=61
 
-| ParameterName | DataType            | Description |
-|---------------|---------------------|-------------|
-| account       | string (Required)   | 帳號          |
-| password      | string (Required)   | 密碼          |
-| said          | integral (Required) | 上層代理代碼      |
-| name          | string              | 名稱          |
-| email         | string              | Email       |
-| countryCodes  | string              | 國碼(手機)      |
-| phoneNumber   | string              | 手機號碼，不含國碼   |
+| ParameterName | DataType            | Description        |
+| ------------- | ------------------- | ------------------ |
+| account       | string (Required)   | 帳號               |
+| password      | string (Required)   | 密碼               |
+| said          | integral (Required) | 上層代理代碼       |
+| name          | string              | 名稱               |
+| email         | string              | Email              |
+| countryCodes  | string              | 國碼(手機)         |
+| phoneNumber   | string              | 手機號碼，不含國碼 |
 
 ### 會員-修改 cmdNo=62
 
-| ParameterName | DataType           | Description       |
-|---------------|--------------------|-------------------|
-| uuid          | integral(Required) | 會員代碼              |
-| password      | string             | 密碼                |
-| name          | string             | 名稱                |
-| email         | string             | Email             |
-| countryCodes  | string             | 國碼(手機)            |
+| ParameterName | DataType           | Description                |
+| ------------- | ------------------ | -------------------------- |
+| uuid          | integral(Required) | 會員代碼                   |
+| password      | string             | 密碼                       |
+| name          | string             | 名稱                       |
+| email         | string             | Email                      |
+| countryCodes  | string             | 國碼(手機)                 |
 | phoneNumber   | string             | 手機號碼，不含國碼         |
-| status        | integral           | 狀態 0:停用 1:啟用 9:觀看 |
-| highRisk      | integral           | 是否為高風險用戶 1:是 0:否  |
-| ableWithdraw  | integral           | 是否可以出款 1:是 0:否    |
-| ableDeposit   | integral           | 是否可以入款 1:是 0:否    |
+| status        | integral           | 狀態 0:停用 1:啟用 9:觀看  |
+| highRisk      | integral           | 是否為高風險用戶 1:是 0:否 |
+| ableWithdraw  | integral           | 是否可以出款 1:是 0:否     |
+| ableDeposit   | integral           | 是否可以入款 1:是 0:否     |
 
 ### 會員-返水累積值歸零 cmdNo=63
 
 | ParameterName | DataType           | Description |
-|---------------|--------------------|-------------|
-| uuid          | integral(Required) | 會員代碼        |
+| ------------- | ------------------ | ----------- |
+| uuid          | integral(Required) | 會員代碼    |
 
 ### 會員-金流明細列表 cmdNo=70
 
-| ParameterName | DataType           | Description     |
-|---------------|--------------------|-----------------|
-| uuid          | integral(Required) | 會員代碼            |
-| pid           | string             | 訂單號             |
-| agent         | string             | 代理代碼            |
+| ParameterName | DataType           | Description            |
+| ------------- | ------------------ | ---------------------- |
+| uuid          | integral(Required) | 會員代碼               |
+| pid           | string             | 訂單號                 |
+| agent         | string             | 代理代碼               |
 | payment       | string             | 金流商代碼 例：FastPay |
-| acton         | string             | 出入金 D:入, W:出    |
-| pageNum       | integral           | 頁數，0 開始         |
-| pageLimit     | integral           | 每頁筆數，預設 10 筆    |
+| acton         | string             | 出入金 D:入, W:出      |
+| pageNum       | integral           | 頁數，0 開始           |
+| pageLimit     | integral           | 每頁筆數，預設 10 筆   |
+
+<a id="cmdNo=70"></a>
 
 ```json
 {
@@ -1302,15 +1648,17 @@ status: 1 為成功
 
 ### 會員-銀行卡列表 cmdNo=71
 
-| ParameterName | DataType | Description                   |
-|---------------|----------|-------------------------------|
-| uuid          | string   | 會員代碼                          |
+| ParameterName | DataType | Description                               |
+| ------------- | -------- | ----------------------------------------- |
+| uuid          | string   | 會員代碼                                  |
 | bankLangCode  | string   | 銀行代碼 <br/> ex: 002，詳情代碼表請洽 PM |
-| bankAccount   | string   | 銀行帳號                          |
-| realName      | string   | 真實姓名                          |
-| currency      | string   | 幣別                            |
-| pageNum       | integral | 頁數，0 開始                       |
-| pageLimit     | integral | 每頁筆數，預設 10 筆                  |
+| bankAccount   | string   | 銀行帳號                                  |
+| realName      | string   | 真實姓名                                  |
+| currency      | string   | 幣別                                      |
+| pageNum       | integral | 頁數，0 開始                              |
+| pageLimit     | integral | 每頁筆數，預設 10 筆                      |
+
+<a id="cmdNo=71"></a>
 
 ```json
 {
@@ -1350,20 +1698,20 @@ status: 1 為成功
 
 ### 會員-增減點數 cmdNo=80
 
-| ParameterName | DataType           | Description                                          |
-|---------------|--------------------|------------------------------------------------------|
-| uuid          | integral(Required) | 會員代碼                                                 |
-| amount        | integral(Required) | 點數 1=10000<br/>例 1TWD = 10000 點                      |
+| ParameterName | DataType           | Description                                                           |
+| ------------- | ------------------ | --------------------------------------------------------------------- |
+| uuid          | integral(Required) | 會員代碼                                                              |
+| amount        | integral(Required) | 點數 1=10000<br/>例 1TWD = 10000 點                                   |
 | wdCode        | integral           | 金流類別代碼(下方定義) <br/>原則上 1000~1999 加點<br/> 2000~2999 減點 |
 
 ## 總代理端
 
 ### 總代理-登入 cmdNo=500
 
-| ParameterName | DataType          | Description |
-|---------------|-------------------|-------------|
-| account       | string (Required) | 帳號          |
-| password      | string (Required) | 密碼          |
+| ParameterName | DataType          | Description      |
+| ------------- | ----------------- | ---------------- |
+| account       | string (Required) | 帳號             |
+| password      | string (Required) | 密碼             |
 | lang          | string            | 語系，預設 en-us |
 
 ### 遊戲列表 cmdNo=501
@@ -1376,7 +1724,8 @@ status: 1 為成功
   "status": 1,
   "message": "",
   "data": {
-    "we": [         //遊戲廠商代碼
+    "we": [
+      //遊戲廠商代碼
       {
         "c": "BAC", //遊戲代碼
         "n": "經典百家樂" //遊戲名稱
@@ -1403,44 +1752,7 @@ status: 1 為成功
 | pageNum       | integral           | 頁數，0 開始           |
 | pageLimit     | integral           | 每頁筆數，預設 10 筆   |
 
-```json
-{
-  "cmdNo": 505,
-  "status": 1,
-  "message": "",
-  "input": {
-    "cmdNo": 505,
-    "uuid": "49",
-    "pid": "DP-98964F-673D3A35-152D95370",
-    "payment": "FastPay",
-    "action": ""
-  },
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "pid": "DP-98964F-673D3A35-152D95370",
-        "payment": "FastPay",
-        "action": "D",
-        "merchant": "fast203676",
-        "method": "001",
-        "amount": 600000000,
-        "currency": "VND",
-        "extra": "",
-        "state": "未付款",
-        "uuid": 49,
-        "said": 30,
-        "agent_tree": "|1|30|",
-        "trade_at": 1732065845,
-        "created_at": "2024-11-20 09:24:05",
-        "updated_at": "2024-11-25 10:48:27",
-        "method_name": "Bank transfer"
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=70)
 
 ### 會員-銀行卡列表 cmdNo=506
 
@@ -1456,38 +1768,7 @@ status: 1 為成功
 
 只看得到自己底下會員的銀行卡
 
-```json
-{
-  "cmdNo": 506,
-  "status": 1,
-  "message": "",
-  "input": {
-    "cmdNo": 506,
-    "uuid": "",
-    "bankLangCode": "",
-    "bankAccount": "",
-    "realName": "",
-    "currency": ""
-  },
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "baid": 11,
-        "bank_lang_code": "001",
-        "bank_account": "test55647888",
-        "currency": "VND",
-        "real_name": "aaa",
-        "alias": "測試用",
-        "created_at": "2024-12-02 09:46:48",
-        "updated_at": "2024-12-02 09:46:48",
-        "bank_name": "VP BANK"
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=71)
 
 ### 總代端-全部-查詢操作日誌 cmdNo=521
 
@@ -1624,71 +1905,7 @@ status: 1 為成功
 代理代碼 與 會員代碼 擇一傳入，另一方帶 0
 只能取自己底下代理的遊戲權限
 
-```json
-{
-  "cmdNo": 526,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "maid": 30,
-        "said": 1,
-        "uuid": 0,
-        "agent_tree": "|1|30|",
-        "game_provider": "we",
-        "game_provider_status": 1,
-        "live_status": 1,
-        "live_game_status": {
-          "BAC": 0
-        },
-        "lottery_status": 1,
-        "lottery_game_status": [],
-        "slot_status": 1,
-        "slot_game_status": [],
-        "sport_status": 1,
-        "sport_game_status": [],
-        "chess_status": 1,
-        "chess_game_status": [],
-        "blockchain_status": 1,
-        "blockchain_game_status": []
-      }
-    ]
-  }
-}
-```
-
-若沒設定過權限
-
-```json
-{
-  "cmdNo": 526,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 0,
-    "totalPage": 0,
-    "list": {
-      "game_provider": "jdb",
-      "game_provider_status": 1,
-      "live_status": 1,
-      "live_game_status": [],
-      "lottery_status": 1,
-      "lottery_game_status": [],
-      "slot_status": 1,
-      "slot_game_status": [],
-      "sport_status": 1,
-      "sport_game_status": [],
-      "chess_status": 1,
-      "chess_game_status": [],
-      "blockchain_status": 1,
-      "blockchain_game_status": []
-    },
-  },
-}
-```
+[回覆說明](#cmdNo=27)
 
 ### 總代端-代理-拆帳報表 cmdNo=528
 
@@ -1760,7 +1977,40 @@ status: 1 為成功
 }
 ```
 
-### 代理-列表 cmdNo=550
+### 後台白名單列表 cmdNo=529
+
+| ParameterName | DataType | Description          |
+| ------------- | -------- | -------------------- |
+| ip            | string   | ip                   |
+| maid          | string   | 代理 id              |
+| state         | string   | 狀態 1:啟用 2:移除   |
+| pageNum       | string   | 頁數，0 開始         |
+| pageLimit     | string   | 每頁筆數，預設 10 筆 |
+
+[回覆說明](#cmdNo=35)
+
+### 新增後台白名單 ip cmdNo=530
+
+| ParameterName | DataType | Description     |
+| ------------- | -------- | --------------- |
+| maid          | string   | 要新增的代理 id |
+| ip            | string   | ip              |
+| remark        | string   | 備註            |
+
+status: 1 為成功
+
+### 編輯後台白名單 ip cmdNo=531
+
+| ParameterName | DataType | Description        |
+| ------------- | -------- | ------------------ |
+| serial        | string   | 流水號             |
+| ip            | string   | ip                 |
+| remark        | string   | 備註               |
+| state         | string   | 狀態 1:啟用 2:移除 |
+
+status: 1 為成功
+
+### 總代端-代理-列表 cmdNo=550
 
 | ParameterName | DataType | Description                   |
 | ------------- | -------- | ----------------------------- |
@@ -1773,6 +2023,8 @@ status: 1 為成功
 | status        | integral | 狀態 0:停用 1:啟用 9:觀看     |
 | pageNum       | integral | 頁數，0 開始                  |
 | pageLimit     | integral | 每頁筆數，預設 10 筆          |
+
+[回覆說明](#cmdNo=50)
 
 ### 代理-新增 cmdNo=551
 
@@ -1794,6 +2046,7 @@ status: 1 為成功
 | password      | string             | 密碼                   |
 | name          | string             | 名稱                   |
 | syncSubAgent  | integral           | 狀態同步下線 1:是 0:否 |
+| quotaAmount   | integral           | 信用額度 10000:1       |
 
 ### 代理-取得不返水遊戲 cmdNo=553
 
@@ -1802,23 +2055,7 @@ status: 1 為成功
 | maid          | integral | 代理代碼    |
 | gameProvider  | string   | 遊戲商代碼  |
 
-```json
-{
-    "cmdNo": 553,
-    "status": 1,
-    "message": "",
-    "input": {
-        "cmdNo": 553,
-        "maid": "8",
-        "gameProvider": "sp",
-        "pageNum": "0",
-        "pageLimit": "10"
-    },
-    "data": {
-        "key": "{"sp_EG-SLOT-A033":1}"
-    }
-}
-```
+[回覆說明](#cmdNo=56)
 
 ### 代理-設定不返水遊戲 cmdNo=554
 
@@ -1867,18 +2104,18 @@ status: 1 為成功
 
 ### 會員-修改 cmdNo=562
 
-| ParameterName | DataType           | Description       |
-|---------------|--------------------|-------------------|
-| uuid          | integral(Required) | 會員代碼              |
-| password      | string             | 密碼                |
-| name          | string             | 名稱                |
-| email         | string             | Email             |
-| countryCodes  | string             | 國碼(手機)            |
+| ParameterName | DataType           | Description                |
+| ------------- | ------------------ | -------------------------- |
+| uuid          | integral(Required) | 會員代碼                   |
+| password      | string             | 密碼                       |
+| name          | string             | 名稱                       |
+| email         | string             | Email                      |
+| countryCodes  | string             | 國碼(手機)                 |
 | phoneNumber   | string             | 手機號碼，不含國碼         |
-| status        | integral           | 狀態 0:停用 1:啟用 9:觀看 |
-| highRisk      | integral           | 是否為高風險用戶 1:是 0:否  |
-| ableWithdraw  | integral           | 是否可以出款 1:是 0:否    |
-| ableDeposit   | integral           | 是否可以入款 1:是 0:否    |
+| status        | integral           | 狀態 0:停用 1:啟用 9:觀看  |
+| highRisk      | integral           | 是否為高風險用戶 1:是 0:否 |
+| ableWithdraw  | integral           | 是否可以出款 1:是 0:否     |
+| ableDeposit   | integral           | 是否可以入款 1:是 0:否     |
 
 ## 代理端
 
@@ -2072,9 +2309,9 @@ status: 1 為成功
 
 ### 代理端-標籤-列表 cmdNo=740
 
-| ParameterName | DataType | Description  |
-|---------------|----------|--------------|
-| pageNum       | integral | 頁數，0 開始      |
+| ParameterName | DataType | Description          |
+| ------------- | -------- | -------------------- |
+| pageNum       | integral | 頁數，0 開始         |
 | pageLimit     | integral | 每頁筆數，預設 10 筆 |
 
 ```json
@@ -2087,11 +2324,11 @@ status: 1 為成功
     "totalPage": 1,
     "list": [
       {
-        "tag_id": 1,                        //標籤代碼
-        "maid": 30,                         //代理代碼
-        "tag_name": "ererer",               //標籤名稱
-        "description": "",                  //標籤說明
-        "member_total": 0,                  //在此標簽下的會員數量
+        "tag_id": 1, //標籤代碼
+        "maid": 30, //代理代碼
+        "tag_name": "ererer", //標籤名稱
+        "description": "", //標籤說明
+        "member_total": 0, //在此標簽下的會員數量
         "updated_at": "2024-12-11 08:46:08" //最後更新時間
       }
     ]
@@ -2102,9 +2339,10 @@ status: 1 為成功
 ### 代理端-標籤-新增 cmdNo=741
 
 | ParameterName | DataType | Description |
-|---------------|----------|-------------|
-| tagName       | string   | 標籤名稱        |
-| description   | string   | 標籤說明        |
+| ------------- | -------- | ----------- |
+| tagName       | string   | 標籤名稱    |
+| description   | string   | 標籤說明    |
+
 ```json
 {
   "cmdNo": 741,
@@ -2116,10 +2354,11 @@ status: 1 為成功
 ### 代理端-標籤-修改 cmdNo=742
 
 | ParameterName | DataType | Description |
-|---------------|----------|-------------|
-| tagId         | integral | 標籤代碼        |
-| tagName       | string   | 標籤名稱        |
-| description   | string   | 標籤說明        |
+| ------------- | -------- | ----------- |
+| tagId         | integral | 標籤代碼    |
+| tagName       | string   | 標籤名稱    |
+| description   | string   | 標籤說明    |
+
 ```json
 {
   "cmdNo": 742,
@@ -2128,63 +2367,33 @@ status: 1 為成功
 }
 ```
 
-### 代理-列表 cmdNo=750
+### 代理端-代理-列表 cmdNo=750
 
-| ParameterName | DataType | Description         |
-|---------------|----------|---------------------|
-| account       | string   | 帳號                  |
-| said          | integral | 上層代理代碼，0 代表總代理      |
-| rid           | integral | 角色代碼                |
-| currency      | string   | 幣值代碼                |
-| name          | string   | 名稱                  |
+| ParameterName | DataType | Description                   |
+| ------------- | -------- | ----------------------------- |
+| account       | string   | 帳號                          |
+| said          | integral | 上層代理代碼，0 代表總代理    |
+| rid           | integral | 角色代碼                      |
+| currency      | string   | 幣值代碼                      |
+| name          | string   | 名稱                          |
 | parentStatus  | integral | 上層狀態 0:停用 1:啟用 9:觀看 |
-| status        | integral | 狀態 0:停用 1:啟用 9:觀看   |
-| getDetail     | integral | 詳細資料 0:否(預設) 1:是    |
-| pageNum       | integral | 頁數，0 開始             |
-| pageLimit     | integral | 每頁筆數，預設 10 筆        |
-```json
-{
-  cmdNo: 750,
-  status: 1,
-  message: "",
-  data: {
-    total: 3,
-    totalPage: 1,
-    list: [
-      {
-        maid: 30,             //代理代碼
-        said: 1,              //上層代理代碼
-        rid: 0,               //角色代碼
-        debt_identity: 1,     //用戶型別 1:信用 2:現金
-        name: "WE1級代理",     //名稱
-        agent_tree: "|1|30|", //代理階層圖
-        agent_level: 1,       //代理層級 0:總代 1:一級代理 以此類推
-        status: 1,            //狀態 0:停用 1:啟用 9:觀看
-        commission_pct: 60,   //代理佔成數 0~100
-        currency: "VND",      //幣別 總代不會有幣別
-        p_status: 1,          //上層狀態 0:停用 1:啟用 9:觀看
-        account: "we1",       //帳號
-        email: null,          //Email
-        country_codes: null,  //國碼(手機)
-        phone: null,          //手機號碼(不含國碼)
-        updated_at: "2024-11-29 13:44:40" //最後更新時間
-      },
-    ],
-  }
-}
-```
+| status        | integral | 狀態 0:停用 1:啟用 9:觀看     |
+| getDetail     | integral | 詳細資料 0:否(預設) 1:是      |
+| pageNum       | integral | 頁數，0 開始                  |
+| pageLimit     | integral | 每頁筆數，預設 10 筆          |
 
+[回覆說明](#cmdNo=50)
 
 ### 代理-新增 cmdNo=751
 
-| ParameterName | DataType            | Description             |
-|---------------|---------------------|-------------------------|
-| account       | string (Required)   | 帳號                      |
-| password      | string (Required)   | 密碼                      |
+| ParameterName | DataType            | Description                                  |
+| ------------- | ------------------- | -------------------------------------------- |
+| account       | string (Required)   | 帳號                                         |
+| password      | string (Required)   | 密碼                                         |
 | said          | integral (Required) | 上層代理代碼，0 或空值代表新增者為該代理上層 |
-| rid           | integral (Required) | 角色代碼                    |
-| currency      | string (Required)   | 幣值代碼，只有 1 級代理需要         |
-| name          | string              | 名稱                      |
+| rid           | integral (Required) | 角色代碼                                     |
+| currency      | string (Required)   | 幣值代碼，只有 1 級代理需要                  |
+| name          | string              | 名稱                                         |
 
 ```json
 {
@@ -2196,14 +2405,15 @@ status: 1 為成功
 
 ### 代理-修改 cmdNo=752
 
-| ParameterName | DataType           | Description       |
-|---------------|--------------------|-------------------|
-| maid          | integral(Required) | 代理代碼              |
-| rid           | integral           | 角色代碼              |
-| password      | string             | 密碼                |
+| ParameterName | DataType           | Description               |
+| ------------- | ------------------ | ------------------------- |
+| maid          | integral(Required) | 代理代碼                  |
+| rid           | integral           | 角色代碼                  |
+| password      | string             | 密碼                      |
 | status        | integral           | 狀態 0:停用 1:啟用 9:觀看 |
-| name          | string             | 名稱                |
+| name          | string             | 名稱                      |
 | syncSubAgent  | integral           | 狀態同步下線 1:是 0:否    |
+| quotaAmount   | integral           | 信用額度 10000:1          |
 
 ```json
 {
@@ -2267,72 +2477,7 @@ status: 1 為成功
 
 只能取自己底下代理或會員的遊戲權限
 
-```json
-{
-  "cmdNo": 755,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "maid": 0,
-        "said": 4,
-        "uuid": 6,
-        "agent_tree": "|3|4|",
-        "game_provider": "we",
-        "game_provider_status": 1,
-        "live_status": 1,
-        "live_game_status": {
-          "BAC": 0,
-          "DI": 0
-        },
-        "lottery_status": 1,
-        "lottery_game_status": [],
-        "slot_status": 1,
-        "slot_game_status": [],
-        "sport_status": 0,
-        "sport_game_status": [],
-        "chess_status": 1,
-        "chess_game_status": [],
-        "blockchain_status": 1,
-        "blockchain_game_status": []
-      }
-    ]
-  }
-}
-```
-
-若沒設定過權限
-
-```json
-{
-  "cmdNo": 755,
-  "status": 1,
-  "message": "",
-  "data": {
-    "total": 0,
-    "totalPage": 0,
-    "list": {
-      "game_provider": "we",
-      "game_provider_status": 1,
-      "live_status": 1,
-      "live_game_status": "",
-      "lottery_status": 1,
-      "lottery_game_status": "",
-      "slot_status": 1,
-      "slot_game_status": "",
-      "sport_status": 1,
-      "sport_game_status": "",
-      "chess_status": 1,
-      "chess_game_status": "",
-      "blockchain_status": 1,
-      "blockchain_game_status": ""
-    }
-  }
-}
-```
+[回覆說明](#cmdNo=27)
 
 ### 代理-取得不返水遊戲 cmdNo=756
 
@@ -2340,22 +2485,7 @@ status: 1 為成功
 | ------------- | -------- | ----------- |
 | gameProvider  | string   | 遊戲商代碼  |
 
-```json
-{
-    "cmdNo": 756,
-    "status": 1,
-    "message": "",
-    "input": {
-        "cmdNo": 756,
-        "gameProvider": "we",
-        "pageNum": "0",
-        "pageLimit": "10"
-    },
-    "data": {
-        "key": "{"we_CGM":1}"
-    }
-}
-```
+[回覆說明](#cmdNo=56)
 
 ### 代理-設定不返水遊戲 cmdNo=757
 
@@ -2374,32 +2504,32 @@ status: 1 為成功
 
 ### 會員-列表 cmdNo=760
 
-| ParameterName | DataType            | Description         |
-|---------------|---------------------|---------------------|
-| account       | string              | 帳號                  |
-| said          | integral (Required) | 上層代理代碼              |
-| name          | string              | 名稱                  |
-| email         | string              | Email               |
-| countryCodes  | string              | 國碼(手機)              |
-| phoneNumber   | string              | 手機號碼，不含國碼           |
+| ParameterName | DataType            | Description                   |
+| ------------- | ------------------- | ----------------------------- |
+| account       | string              | 帳號                          |
+| said          | integral (Required) | 上層代理代碼                  |
+| name          | string              | 名稱                          |
+| email         | string              | Email                         |
+| countryCodes  | string              | 國碼(手機)                    |
+| phoneNumber   | string              | 手機號碼，不含國碼            |
 | parentStatus  | integral            | 上層狀態 0:停用 1:啟用 9:觀看 |
-| status        | integral            | 狀態 0:停用 1:啟用 9:觀看   |
-| pageNum       | integral            | 頁數，0 開始             |
-| pageLimit     | integral            | 每頁筆數，預設 10 筆        |
+| status        | integral            | 狀態 0:停用 1:啟用 9:觀看     |
+| pageNum       | integral            | 頁數，0 開始                  |
+| pageLimit     | integral            | 每頁筆數，預設 10 筆          |
 
 [回覆說明](#cmdNo=60)
 
 ### 會員-新增 cmdNo=761
 
-| ParameterName | DataType            | Description |
-|---------------|---------------------|-------------|
-| account       | string (Required)   | 帳號          |
-| password      | string (Required)   | 密碼          |
-| said          | integral (Required) | 上層代理代碼      |
-| name          | string              | 名稱          |
-| email         | string              | Email       |
-| countryCodes  | string              | 國碼(手機)      |
-| phoneNumber   | string              | 手機號碼，不含國碼   |
+| ParameterName | DataType            | Description        |
+| ------------- | ------------------- | ------------------ |
+| account       | string (Required)   | 帳號               |
+| password      | string (Required)   | 密碼               |
+| said          | integral (Required) | 上層代理代碼       |
+| name          | string              | 名稱               |
+| email         | string              | Email              |
+| countryCodes  | string              | 國碼(手機)         |
+| phoneNumber   | string              | 手機號碼，不含國碼 |
 
 ```json
 {
@@ -2411,18 +2541,18 @@ status: 1 為成功
 
 ### 會員-修改 cmdNo=762
 
-| ParameterName | DataType           | Description       |
-|---------------|--------------------|-------------------|
-| uuid          | integral(Required) | 會員代碼              |
-| password      | string             | 密碼                |
-| name          | string             | 名稱                |
-| email         | string             | Email             |
-| countryCodes  | string             | 國碼(手機)            |
+| ParameterName | DataType           | Description                |
+| ------------- | ------------------ | -------------------------- |
+| uuid          | integral(Required) | 會員代碼                   |
+| password      | string             | 密碼                       |
+| name          | string             | 名稱                       |
+| email         | string             | Email                      |
+| countryCodes  | string             | 國碼(手機)                 |
 | phoneNumber   | string             | 手機號碼，不含國碼         |
-| status        | integral           | 狀態 0:停用 1:啟用 9:觀看 |
-| highRisk      | integral           | 是否為高風險用戶 1:是 0:否  |
-| ableWithdraw  | integral           | 是否可以出款 1:是 0:否    |
-| ableDeposit   | integral           | 是否可以入款 1:是 0:否    |
+| status        | integral           | 狀態 0:停用 1:啟用 9:觀看  |
+| highRisk      | integral           | 是否為高風險用戶 1:是 0:否 |
+| ableWithdraw  | integral           | 是否可以出款 1:是 0:否     |
+| ableDeposit   | integral           | 是否可以入款 1:是 0:否     |
 
 ```json
 {
@@ -2443,44 +2573,7 @@ status: 1 為成功
 | pageNum       | integral           | 頁數，0 開始           |
 | pageLimit     | integral           | 每頁筆數，預設 10 筆   |
 
-```json
-{
-  "cmdNo": 763,
-  "status": 1,
-  "message": "",
-  "input": {
-    "cmdNo": 763,
-    "uuid": "50",
-    "pid": "",
-    "payment": "FastPay",
-    "action": ""
-  },
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "pid": "DPX98964EX674D48DFX8E88E82C",
-        "payment": "FastPay",
-        "action": "D",
-        "merchant": "fast203676",
-        "method": "001",
-        "amount": 600000000,
-        "currency": "VND",
-        "extra": "",
-        "state": "已下單",
-        "uuid": 50,
-        "said": 30,
-        "agent_tree": "|1|30|",
-        "trade_at": 1733118175,
-        "created_at": "2024-12-02 13:42:56",
-        "updated_at": "2024-12-02 13:42:56",
-        "method_name": "Bank transfer"
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=70)
 
 ### 會員-銀行卡列表 cmdNo=764
 
@@ -2494,38 +2587,7 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始                              |
 | pageLimit     | integral | 每頁筆數，預設 10 筆                      |
 
-```json
-{
-  "cmdNo": 764,
-  "status": 1,
-  "message": "",
-  "input": {
-    "cmdNo": 764,
-    "uuid": "",
-    "bankLangCode": "",
-    "bankAccount": "",
-    "realName": "",
-    "currency": ""
-  },
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "baid": 11,
-        "bank_lang_code": "001",
-        "bank_account": "test55647888",
-        "currency": "VND",
-        "real_name": "aaa",
-        "alias": "測試用",
-        "created_at": "2024-12-02 09:46:48",
-        "updated_at": "2024-12-02 09:46:48",
-        "bank_name": "VP BANK"
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=71)
 
 ### 會員-出款審核 cmdNo=765
 
@@ -2566,10 +2628,10 @@ status: 1 為成功
 
 ### 會員端-查詢投注記錄 cmdNo=802
 
-| ParameterName | DataType | Description |
-|---------------|----------|-------------|
-| gameProvider  | string   | 遊戲提供商       |
-| ip            | string   | IP          |
+| ParameterName | DataType | Description       |
+| ------------- | -------- | ----------------- |
+| gameProvider  | string   | 遊戲提供商        |
+| ip            | string   | IP                |
 | stime         | string   | 開始時間(+8 時區) |
 | etime         | string   | 結束時間(+8 時區) |
 
@@ -2621,10 +2683,6 @@ status: 1 為成功
     "marquee_sort": "1",
     "marquee_shows_seconds": 10,
     "time_interval_next_marquee": 3,
-    "creator": 2,
-    "updater": 2,
-    "created_at": "2024-12-06 17:14:18",
-    "updated_at": "2024-12-10 13:35:23",
     "data": []
   },
   "1": {
@@ -2641,10 +2699,6 @@ status: 1 為成功
     "marquee_sort": "0",
     "marquee_shows_seconds": 0,
     "time_interval_next_marquee": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-10 13:44:09",
-    "updated_at": "2024-12-10 13:44:09",
     "data": []
   },
   "2": {
@@ -2661,32 +2715,16 @@ status: 1 為成功
     "marquee_sort": "0",
     "marquee_shows_seconds": 0,
     "time_interval_next_marquee": 0,
-    "creator": 2,
-    "updater": 2,
-    "created_at": "2024-12-06 17:08:24",
-    "updated_at": "2024-12-06 17:15:48",
     "data": [
       {
-        "serial": 2,
-        "acid": 1,
         "language": "en-us",
         "title": "test111",
-        "content": "ddddd",
-        "creator": 2,
-        "updater": null,
-        "created_at": "2024-12-06 17:18:52",
-        "updated_at": "2024-12-06 17:18:52"
+        "content": "ddddd"
       },
       {
-        "serial": 1,
-        "acid": 1,
         "language": "zh-tw",
         "title": "測試111",
-        "content": "asdfasdfaf",
-        "creator": 2,
-        "updater": 2,
-        "created_at": "2024-12-06 17:17:20",
-        "updated_at": "2024-12-06 17:18:20"
+        "content": "asdfasdfaf"
       }
     ]
   },
@@ -2704,21 +2742,11 @@ status: 1 為成功
     "marquee_sort": "0",
     "marquee_shows_seconds": 0,
     "time_interval_next_marquee": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-09 16:49:33",
-    "updated_at": "2024-12-09 16:49:33",
     "data": [
       {
-        "serial": 11,
-        "acid": 13,
         "language": "vi-vn",
         "title": "aaa",
-        "content": "bbbb",
-        "creator": 2,
-        "updater": null,
-        "created_at": "2024-12-10 10:02:40",
-        "updated_at": "2024-12-10 10:02:40"
+        "content": "bbbb"
       }
     ]
   },
@@ -2736,32 +2764,16 @@ status: 1 為成功
     "marquee_sort": "0",
     "marquee_shows_seconds": 0,
     "time_interval_next_marquee": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-09 14:18:51",
-    "updated_at": "2024-12-09 14:18:51",
     "data": [
       {
-        "serial": 9,
-        "acid": 9,
         "language": "en-us",
         "title": "aaa",
-        "content": "bbbb",
-        "creator": 2,
-        "updater": null,
-        "created_at": "2024-12-10 10:01:53",
-        "updated_at": "2024-12-10 10:01:53"
+        "content": "bbbb"
       },
       {
-        "serial": 10,
-        "acid": 9,
         "language": "vi-vn",
         "title": "aaa",
-        "content": "bbbb",
-        "creator": 2,
-        "updater": null,
-        "created_at": "2024-12-10 10:02:04",
-        "updated_at": "2024-12-10 10:02:04"
+        "content": "bbbb"
       }
     ]
   },
@@ -2790,10 +2802,6 @@ status: 1 為成功
     "monthly_announcement_end_date": "",
     "pop_up_window_sort": "50",
     "time_interval_next_pop_up": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-10 10:19:19",
-    "updated_at": "2024-12-10 10:19:19",
     "data": []
   },
   "1": {
@@ -2809,10 +2817,6 @@ status: 1 為成功
     "monthly_announcement_end_date": "17 11:00",
     "pop_up_window_sort": "1",
     "time_interval_next_pop_up": 2,
-    "creator": 2,
-    "updater": 2,
-    "created_at": "2024-12-06 17:14:18",
-    "updated_at": "2024-12-10 13:35:23",
     "data": []
   },
   "2": {
@@ -2828,10 +2832,6 @@ status: 1 為成功
     "monthly_announcement_end_date": "20 11:00",
     "pop_up_window_sort": "7",
     "time_interval_next_pop_up": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-10 14:09:24",
-    "updated_at": "2024-12-10 14:09:24",
     "data": []
   },
   "3": {
@@ -2847,21 +2847,11 @@ status: 1 為成功
     "monthly_announcement_end_date": "19 11:00",
     "pop_up_window_sort": "2",
     "time_interval_next_pop_up": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-10 10:18:16",
-    "updated_at": "2024-12-10 10:18:16",
     "data": [
       {
-        "serial": 13,
-        "acid": 16,
         "language": "vi-vn",
         "title": "aaa",
-        "content": "bbbb",
-        "creator": 2,
-        "updater": null,
-        "created_at": "2024-12-10 10:18:31",
-        "updated_at": "2024-12-10 10:18:31"
+        "content": "bbbb"
       }
     ]
   },
@@ -2878,21 +2868,11 @@ status: 1 為成功
     "monthly_announcement_end_date": "",
     "pop_up_window_sort": "1",
     "time_interval_next_pop_up": 0,
-    "creator": 2,
-    "updater": null,
-    "created_at": "2024-12-10 10:17:49",
-    "updated_at": "2024-12-10 10:17:49",
     "data": [
       {
-        "serial": 12,
-        "acid": 15,
         "language": "vi-vn",
         "title": "aaa",
-        "content": "bbbb",
-        "creator": 2,
-        "updater": null,
-        "created_at": "2024-12-10 10:18:27",
-        "updated_at": "2024-12-10 10:18:27"
+        "content": "bbbb"
       }
     ]
   },
@@ -2911,37 +2891,7 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始                              |
 | pageLimit     | integral | 每頁筆數，預設 10 筆                      |
 
-```json
-{
-  "cmdNo": 810,
-  "status": 1,
-  "message": "",
-  "input": {
-    "cmdNo": 810,
-    "bankLangCode": "",
-    "bankAccount": "",
-    "realName": "",
-    "currency": ""
-  },
-  "data": {
-    "total": 1,
-    "totalPage": 1,
-    "list": [
-      {
-        "baid": 11,
-        "bank_lang_code": "001",
-        "bank_account": "test55647888",
-        "currency": "VND",
-        "real_name": "aaa",
-        "alias": "測試用",
-        "created_at": "2024-12-02 09:46:48",
-        "updated_at": "2024-12-02 09:46:48",
-        "bank_name": "VP BANK"
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=71)
 
 ### 會員-新增銀行卡 cmdNo=811
 
@@ -3086,61 +3036,7 @@ status: 1 為成功
 | pageNum       | integral | 頁數，0 開始           |
 | pageLimit     | integral | 每頁筆數，預設 10 筆   |
 
-```json
-{
-  "cmdNo": 854,
-  "status": 1,
-  "message": "",
-  "input": {
-    "cmdNo": 854,
-    "pid": "",
-    "payment": "FastPay",
-    "action": "D"
-  },
-  "data": {
-    "total": 2,
-    "totalPage": 1,
-    "list": [
-      {
-        "pid": "DP-98964F-673D3A35-152D95370",
-        "payment": "FastPay",
-        "action": "D",
-        "merchant": "fast203676",
-        "method": "001",
-        "amount": 600000000,
-        "currency": "VND",
-        "extra": "",
-        "state": "未付款",
-        "uuid": 49,
-        "said": 30,
-        "agent_tree": "|1|30|",
-        "trade_at": 1732065845,
-        "created_at": "2024-11-20 09:24:05",
-        "updated_at": "2024-11-25 10:48:27",
-        "method_name": "Bank transfer"
-      },
-      {
-        "pid": "DP-98964F-673D795A-182FC417B",
-        "payment": "FastPay",
-        "action": "D",
-        "merchant": "fast203676",
-        "method": "001",
-        "amount": 600000000,
-        "currency": "VND",
-        "extra": "",
-        "state": "未付款",
-        "uuid": 49,
-        "said": 30,
-        "agent_tree": "|1|30|",
-        "trade_at": 1732082010,
-        "created_at": "2024-11-20 13:53:31",
-        "updated_at": "2024-11-25 10:48:28",
-        "method_name": "Bank transfer"
-      }
-    ]
-  }
-}
-```
+[回覆說明](#cmdNo=70)
 
 ### 會員-登入遊戲 cmdNo=860
 
